@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "96973893794",
+    "project_id": "tacrosync",
+    "storage_bucket": "tacrosync.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96973893794:android:076f03386f5b87522227fb",
+        "android_client_info": {
+          "package_name": "com.example.tacrosyncs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96973893794-kgldvrfnn05himc3brln1aipmoitpbus.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tacrosyncs",
+            "certificate_hash": "d9cc4d3f485595fe824309ac53953637d5c939f6"
+          }
+        },
+        {
+          "client_id": "96973893794-icvi7n4nm1qt4fs0vu6s2iir4vcrkafi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj4c-iKVBuO1VLkmJBkI4v6lhhq1Jl2LI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96973893794-icvi7n4nm1qt4fs0vu6s2iir4vcrkafi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

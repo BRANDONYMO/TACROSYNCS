@@ -445,8 +445,27 @@ class DatabaseHelper {
   }
 
   Future<void> eliminarMedicamento(dynamic id, dynamic usuarioId) async {
-    final notifId = id.toString().hashCode.abs() % 100000;
-    await NotificationService().cancelarNotificacionesMedicamento(notifId);
+    // 1. Apagamos todas las notificaciones usando el ID directo
+    await NotificationService().cancelarNotificacionesMedicamento(id);
+
+    // 2. Eliminamos las tomas registradas ÚNICAMENTE EL DÍA DE HOY
+    final ahora = DateTime.now();
+    final String fechaHoy =
+        '${ahora.year}-${ahora.month.toString().padLeft(2, '0')}-${ahora.day.toString().padLeft(2, '0')}';
+
+    final snapshotHoy = await _firestore
+        .collection('historial_tomas')
+        .where('usuarioId', isEqualTo: usuarioId.toString())
+        .where('medicamentoId', isEqualTo: id.toString())
+        .where('fecha', isEqualTo: fechaHoy)
+        .get();
+
+    for (var doc in snapshotHoy.docs) {
+      await doc.reference
+          .delete(); // Borramos solo el registro de hoy, salvando el historial médico
+    }
+
+    // 3. Eliminamos el medicamento de la base principal
     await _firestore.collection('medicamentos').doc(id.toString()).delete();
   }
 }

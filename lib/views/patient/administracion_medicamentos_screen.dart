@@ -49,14 +49,13 @@ class _AdministracionMedicamentosScreenState
 
   Future<void> _eliminar(dynamic id) async {
     try {
+      // Esto ahora borra el medicamento, limpia el día de hoy y apaga las notificaciones a la vez
       await DatabaseHelper.instance.eliminarMedicamento(id, widget.usuarioId);
-      final notifId = id.toString().hashCode.abs() % 100000;
-      await NotificationService().cancelarNotificacionesMedicamento(notifId);
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('✅ Medicamento eliminado con éxito.'),
+            content: Text('✅ Medicamento y alarmas eliminados con éxito.'),
             backgroundColor: Colors.green,
             duration: Duration(seconds: 3),
           ),

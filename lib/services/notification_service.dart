@@ -165,7 +165,8 @@ class NotificationService {
     final int baseId = _convertirAIdSeguro(medicamentoId);
     for (int i = 0; i < limiteTomas; i++) {
       final int notificationId = (baseId * 100) + i;
-      await cancelarNotificacion(notificationId);
+      // Llamada directa usando el ID exacto calculado, para que no lo recorte
+      await notificationsPlugin.cancel(id: notificationId);
     }
   }
 
